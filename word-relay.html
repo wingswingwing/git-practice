@@ -3,6 +3,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="./css/word-relay.css">
     <title>끝말잇기</title>
 </head>
@@ -15,9 +16,30 @@
 
         <!-- content -->
         <div class="section1">
-            <div><span id="order">1</span>번째 참가자</div>
-            <div> 제시어: <span id="word"></span></div>
-            <input type="text" onkeyup="enterkey()"><button>입력</button>
+            <div class="title">
+                <h1>끝말잇기게임</h1>
+            </div>
+            <!-- <div class="info-input">
+                <div class="text">
+
+                    <p>플레이어의 수를 입력해주세요</p>
+                </div>
+                <div class="input-box">
+                    <input type="text"><button>입력</button>
+                </div>
+            </div> -->
+            <i class="fa-solid fa-caret-down"></i>
+            <div class="game-input">
+                <div class="text">
+                    <p><span id="order">1</span>번째 참가자</p>
+                    <p> 제시어: <span id="word"></span></p>
+
+                </div>
+                <div class="input-box">
+                    <input type="text" onkeyup="enterkey()"><button>입력</button>
+
+                </div>
+            </div>
             
         </div>
         <!-- content end -->
@@ -26,10 +48,10 @@
 
     <!-- script -->
     <script>
-        
+        // const num = document.querySelector('.info-input input').value;
         const num = parseInt(prompt('플레이어수를 입력해주세요'));
-        const $input = document.querySelector('input');
-        const $button = document.querySelector('button');
+        const $game_input = document.querySelector('.game-input input');
+        const $game_button = document.querySelector('.game-input button');
         const $word = document.querySelector('#word')
         const $order = document.querySelector('#order');
         const onInput=(event)=>{
@@ -38,15 +60,14 @@
         let word;    //제시어
         let newWord; //새로 입력한 단어
 
-        $button.addEventListener('click',onClickBtn);
-        $input.addEventListener('input',onInput);
+        $game_button.addEventListener('click',onClickBtn);
+        $game_input.addEventListener('input',onInput);
 
         function onClickBtn(){
-            if(!word){//비어있다
+            if(!word || word[word.length - 1] === newWord[0]){//비어있다
                 
                 word = newWord;
                 $word.textContent = word;
-                $input.value='';
 
                 const order = Number($order.textContent);
                 if(order === num){
@@ -54,39 +75,19 @@
                 }else{
                     $order.textContent = order+1;
                 }
-            }else{//비어있지않다
-                if(word[word.length - 1] === newWord[0]){
-                    word = newWord;
-                    $word.textContent = word;
-                    $input.value='';
-
-                    const order = Number($order.textContent);
-                    if(order === num){
-                        $order.textContent = 1
-                    }else{
-                        $order.textContent = order+1;
-                    }
-                }else{//올바른단어가 아니다
-                    alert('다시입력해주세요')
-                }
+            }else{//올바른단어가 아니다
+                alert('다시입력해주세요');
             }
+            $game_input.value='';
+            $game_input.focus();
         }
-        
         
         function enterkey(){
             if (window.event.keyCode == 13){
+                //input마다 작동 다르게 필요
                 onClickBtn();
             }
         }
-
-
-        /*
-            1. 플레이어수
-            2. 참가자순서대로 루틴 : 네트워크필요 > 생략
-            3. 제시어 입력
-            4. 다음사람들이 단어를 입력
-            5. 단어가 올바르면 반복 / 올바르지 않을 경우 재입력 / 반복된 같은 말을 입력할 경우 종료 / 제한 시간을 초과할 경우 종료
-        */
     </script>
 </body>
 </html>
