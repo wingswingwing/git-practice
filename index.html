@@ -4,9 +4,90 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>쇼엠퍼블스터디</title>
+  <title>스터디</title>
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+    * {padding: 0; margin: 0;}
+    a {color: inherit; text-decoration: none;}
+
+    #wrap {
+      font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+    }
+    #wrap .title {
+      margin-top: 3rem;
+      height: 3rem;
+      display: flex; justify-content: center; align-items: center;
+    }
+    #wrap .title h1 {
+      font-weight: 400; 
+      color: rgba(151, 112, 61, 0.6);
+      width: fit-content;
+      position: relative;
+    }
+    #wrap .title h1::before {
+      content: "";
+      width: 1rem; height: 0.1rem;
+      background-color: rgba(151, 112, 61, 0.6);
+      display: block;
+      position: absolute; top: 50%; left: -30%;
+    }
+    #wrap .title h1::after {
+      content: "";
+      width: 1rem; height: 0.1rem;
+      background-color: rgba(151, 112, 61, 0.6);
+      display: block;
+      position: absolute; top: 50%; right: -30%;
+    }
+    #wrap .content {
+      width: 90%;
+      display: flex; justify-content: flex-start; align-items: center;
+      flex-wrap: wrap;
+      margin: 0 auto;
+    }
+    #wrap .content a {
+      border-radius: .5rem; border: 1px solid #ddd;
+      background-color: #eee;
+      margin:1rem auto;
+      display: block;
+      width: 20%;padding: 2rem 0;
+      text-align: center;
+
+      letter-spacing: 1px;
+      cursor: pointer;
+      text-transform: uppercase;
+      border: 2px solid rgba(151, 112, 61, 0.6);
+      background: rgba(235, 204, 138, 0.3);
+      color: rgba(151, 112, 61, 0.6);
+      box-shadow: 1px 1px 2px rgba(0, 0, 200, 0.4);
+    }
+  </style>
 </head>
 <body>
-  쇼엠퍼블스터디
+  <div id="wrap">
+    <!-- header -->
+    <header>
+      <div class="ham"></div>
+      <div class="logo"></div>
+      <div class="prev"></div>
+    </header>
+    <div class="ham-menu"></div>
+
+
+    <!-- content -->
+    <div class="section1">
+      <div class="title">
+        <h1>Site List</h1>
+      </div>
+      <div class="content">
+        <a href="./word-relay.html"><div class="div1">끝말잇기 예제</div></a>
+      </div>
+    </div>
+
+
+    <!-- footer -->
+    <footer>
+
+    </footer>
+  </div>
 </body>
 </html>

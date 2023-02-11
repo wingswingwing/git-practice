@@ -1,0 +1,92 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/word-relay.css">
+    <title>끝말잇기</title>
+</head>
+<body>
+    <div id="wrap">
+        <header>
+            <div></div>
+
+        </header>
+
+        <!-- content -->
+        <div class="section1">
+            <div><span id="order">1</span>번째 참가자</div>
+            <div> 제시어: <span id="word"></span></div>
+            <input type="text" onkeyup="enterkey()"><button>입력</button>
+            
+        </div>
+        <!-- content end -->
+        <footer></footer>
+    </div>
+
+    <!-- script -->
+    <script>
+        
+        const num = parseInt(prompt('플레이어수를 입력해주세요'));
+        const $input = document.querySelector('input');
+        const $button = document.querySelector('button');
+        const $word = document.querySelector('#word')
+        const $order = document.querySelector('#order');
+        const onInput=(event)=>{
+            newWord = event.target.value;
+        }
+        let word;    //제시어
+        let newWord; //새로 입력한 단어
+
+        $button.addEventListener('click',onClickBtn);
+        $input.addEventListener('input',onInput);
+
+        function onClickBtn(){
+            if(!word){//비어있다
+                
+                word = newWord;
+                $word.textContent = word;
+                $input.value='';
+
+                const order = Number($order.textContent);
+                if(order === num){
+                    $order.textContent = 1
+                }else{
+                    $order.textContent = order+1;
+                }
+            }else{//비어있지않다
+                if(word[word.length - 1] === newWord[0]){
+                    word = newWord;
+                    $word.textContent = word;
+                    $input.value='';
+
+                    const order = Number($order.textContent);
+                    if(order === num){
+                        $order.textContent = 1
+                    }else{
+                        $order.textContent = order+1;
+                    }
+                }else{//올바른단어가 아니다
+                    alert('다시입력해주세요')
+                }
+            }
+        }
+        
+        
+        function enterkey(){
+            if (window.event.keyCode == 13){
+                onClickBtn();
+            }
+        }
+
+
+        /*
+            1. 플레이어수
+            2. 참가자순서대로 루틴 : 네트워크필요 > 생략
+            3. 제시어 입력
+            4. 다음사람들이 단어를 입력
+            5. 단어가 올바르면 반복 / 올바르지 않을 경우 재입력 / 반복된 같은 말을 입력할 경우 종료 / 제한 시간을 초과할 경우 종료
+        */
+    </script>
+</body>
+</html>
