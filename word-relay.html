@@ -31,9 +31,10 @@
             <i class="fa-solid fa-caret-down"></i>
             <div class="game-input">
                 <div class="text">
+                    
                     <p><span id="order">1</span>번째 참가자</p>
                     <p> 제시어: <span id="word"></span></p>
-
+                    <p id="time">남은시간: <span id="time-limit"></span></p>
                 </div>
                 <div class="input-box">
                     <input type="text" onkeyup="enterkey()"><button>입력</button>
@@ -54,21 +55,38 @@
         const $game_button = document.querySelector('.game-input button');
         const $word = document.querySelector('#word')
         const $order = document.querySelector('#order');
+        const $time_limit = document.querySelector('#time-limit');
+
         const onInput=(event)=>{
             newWord = event.target.value;
         }
         let word;    //제시어
         let newWord; //새로 입력한 단어
 
+
+
+        const sec_limit = 10
+        $time_limit.textContent = sec_limit;
+        setInterval(setlimit,1000);
+        function setlimit () {
+            if($time_limit1=0){
+                sec_limit -= 1;
+                $time_limit.textContent = sec_limit;
+            }
+        }
+        
         $game_button.addEventListener('click',onClickBtn);
         $game_input.addEventListener('input',onInput);
+        
+
+
 
         function onClickBtn(){
-            if(!word || word[word.length - 1] === newWord[0]){//비어있다
+            if((!word || word[word.length - 1] === newWord[0] ) && newWord.length === 3){//비어있다
                 
                 word = newWord;
                 $word.textContent = word;
-
+4
                 const order = Number($order.textContent);
                 if(order === num){
                     $order.textContent = 1
@@ -76,7 +94,7 @@
                     $order.textContent = order+1;
                 }
             }else{//올바른단어가 아니다
-                alert('다시입력해주세요');
+                alert('올바른 단어가 아닙니다. 앞단어의 뒷글자로 시작하는 3글자 단어를 입력해주세요.');
             }
             $game_input.value='';
             $game_input.focus();
