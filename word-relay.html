@@ -56,6 +56,7 @@
         const $word = document.querySelector('#word')
         const $order = document.querySelector('#order');
         const $time_limit = document.querySelector('#time-limit');
+        
 
         const onInput=(event)=>{
             newWord = event.target.value;
@@ -64,17 +65,24 @@
         let newWord; //새로 입력한 단어
 
 
-
-        const sec_limit = 10
-        $time_limit.textContent = sec_limit;
-        setInterval(setlimit,1000);
-        function setlimit () {
-            if($time_limit1=0){
-                sec_limit -= 1;
-                $time_limit.textContent = sec_limit;
+        function ex(){
+            $time_limit.textContent=10;
+            var timer = 10;
+            setInterval(dada,1000);
+            clearInterval(timer);
+            function dada (){
+                if(timer!=0){
+                    timer--;
+                    document.querySelector("#time-limit").textContent=timer;
+                }else{
+                    clearInterval(timer);
+                }
             }
+
         }
-        
+
+
+
         $game_button.addEventListener('click',onClickBtn);
         $game_input.addEventListener('input',onInput);
         
@@ -83,10 +91,9 @@
 
         function onClickBtn(){
             if((!word || word[word.length - 1] === newWord[0] ) && newWord.length === 3){//비어있다
-                
+                ex();
                 word = newWord;
                 $word.textContent = word;
-4
                 const order = Number($order.textContent);
                 if(order === num){
                     $order.textContent = 1
